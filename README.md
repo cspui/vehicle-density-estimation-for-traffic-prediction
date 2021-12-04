@@ -3,7 +3,11 @@
 ## Front page
 ![frontpage](frontpage.jpg) 
 
-Google Colab link: https://colab.research.google.com/drive/1orMfA9sJtbQDDMwW2ZLjQfIY2Vt2hPBq?usp=sharing
+<p>&nbsp;</p>
+
+**Google Colab link**: https://colab.research.google.com/drive/1orMfA9sJtbQDDMwW2ZLjQfIY2Vt2hPBq?usp=sharing
+
+<p>&nbsp;</p>
 
 ## ▶️ How to run/host
 1. Open the link to the google colab 
