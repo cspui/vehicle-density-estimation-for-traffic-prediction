@@ -8,8 +8,13 @@
             margin: 0 auto;
         }
 
-        p {
+        h1 {
+            font-size: 2rem;
+        }
+
+        #text {
             text-align: center;
+            font-size: 1.3rem;
         }
 
         #submit_form {
@@ -52,7 +57,113 @@
             margin-left: auto;
             margin-right: auto;
         }
+
+        .button {
+            display: inline-flex;
+            height: 40px;
+            width: 200px;
+            border: 2px solid #363636;
+            margin: 20px 20px 20px 20px;
+            color: #363636;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: .8em;
+            letter-spacing: 1.5px;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        #button-3 {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        #button-3 a {
+            position: relative;
+            transition: all .45s ease-Out;
+        }
+
+        #circle {
+            width: 0%;
+            height: 0%;
+            opacity: 0;
+            line-height: 40px;
+            border-radius: 50%;
+            background: #5a5a5a;
+            position: absolute;
+            transition: all .5s ease-Out;
+            top: 20px;
+            left: 70px;
+        }
+
+        #button-3:hover #circle {
+            width: 200%;
+            height: 500%;
+            opacity: 1;
+            top: -70px;
+            left: -70px;
+        }
+
+        #button-3:hover a {
+            color: white;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 10px 14px;
+            cursor: pointer;
+        }
+
+        #upload_btn {
+            padding-left: 5px;
+        }
+
+        select {
+            -webkit-appearance: button;
+            -moz-appearance: button;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -webkit-padding-end: 20px;
+            -moz-padding-end: 20px;
+            -webkit-padding-start: 2px;
+            -moz-padding-start: 2px;
+            background-color: #ffffff9f;
+            /* Fallback color if gradients are not supported */
+            background-image: url(), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4);
+            /* For Chrome and Safari */
+            background-image: url(), -moz-linear-gradient(top, #E5E5E5, #F4F4F4);
+            /* For old Firefox (3.6 to 15) */
+            background-image: url(), -ms-linear-gradient(top, #E5E5E5, #F4F4F4);
+            /* For pre-releases of Internet Explorer  10*/
+            background-image: url(), -o-linear-gradient(top, #E5E5E5, #F4F4F4);
+            /* For old Opera (11.1 to 12.0) */
+            background-image: url(), linear-gradient(to bottom, #E5E5E5, #F4F4F4);
+            /* Standard syntax; must be last */
+            background-position: center right;
+            background-repeat: no-repeat;
+            border: 1px solid #AAA;
+            border-radius: 5px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+            color: #555;
+            font-size: inherit;
+            margin: 0;
+            overflow: hidden;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -275,19 +386,29 @@
 <body>
     <h1>Vehicle density estimation for traffic prediction</h1>
 
-    <p>Upload and preview an image/video to run vehicle density prediction:</p>
+    <p id="text">Upload and preview an image/video to run vehicle density prediction:</p>
 
     <div id="submit_form">
-        <form>
+        <!-- <form >
             <input id="imageinput" type="file" name="file" onchange="readInput(this)" accept="video/*, image/*">
-        </form>
-        <input type="submit" value="Upload and process" onclick="submit();" />
+        </form> -->
+        <div>
+            <label class="custom-file-upload">
+                <input type="file" id="imageinput" onchange="readInput(this)" accept="video/*, image/*" />
+                <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                <span id="upload_btn">Choose File</span>
+            </label>
+        </div>
+
+        <div class="button" id="button-3" onclick="submit();">
+            <div id="circle"></div>
+            <a>Upload and process</a>
+        </div>
     </div>
 
-    <br />
 
     <div id="submit_form">
-        <label for="sample">Choose a sample to preview:</label>
+        <label for="sample" id="text">Choose a sample to preview:</label>
         <select name="samples" id="samples" onchange="preview_samples(this)">
             <option value="none">None</option>
             <optgroup label="Videos">
@@ -355,7 +476,11 @@
                 <option value="test51">Image 52</option>
             </optgroup>
         </select>
-        <input type="submit" value="Test on sample" onclick="submit_sample();" />
+
+        <div class="button" id="button-3" onclick="submit_sample();">
+            <div id="circle"></div>
+            <a>Test on sample</a>
+        </div>
     </div>
 
     <h3>Preview inputs: </h3>
