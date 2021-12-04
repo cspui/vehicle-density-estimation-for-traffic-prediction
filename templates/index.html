@@ -216,9 +216,10 @@
                 $('#preview_input').empty().append('<video id="videobox" src="" controls></video>');
                 $('#videobox').attr('src', `/sample_video/${input.value}`);
 
-                $('video source').last().on('error', function (e) {
+                let video = document.querySelector("video");
+                video.addEventListener("error", function (event) {
                     $('#videobox')[0].load();
-                });
+                })
             }
 
             $('#commands').html("Fetching samples" + "<br>");
@@ -235,7 +236,7 @@
                 return;
             }
 
-            if (input.value.length < 7) {
+            if (input.length < 7) {
                 file_type = "image";
                 ext = "jpg";
             }
@@ -245,7 +246,8 @@
             }
 
             filename = `${new Date().getTime()}.${ext}`;
-            formData.append(`${file_type}`, [filename, input]);
+            formData.append(`${file_type}`, filename);
+            formData.append(`sample_name`, input);
 
             clear_all_interval(interval_pointer_arr);
 
@@ -297,7 +299,6 @@
                 <option value="test_video5">Video 6</option>
                 <option value="test_video6">Video 7</option>
                 <option value="test_video7">Video 8</option>
-                <option value="test_video8">Video 9</option>
             </optgroup>
             <optgroup label="Images">
                 <option value="test0">Image 1</option>
