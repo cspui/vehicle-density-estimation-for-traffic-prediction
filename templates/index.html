@@ -200,19 +200,161 @@
             }
         }
 
+        function preview_samples(input) {
+            console.log("Preview sample: ", input.value);
+
+            if (input.value == "none") {
+                console.warn("Select a sample to preview");
+                return;
+            }
+
+            if (input.value.length < 7) {
+                $('#preview_input').empty().append('<img id="imagebox" src="">');
+                $('#imagebox').attr('src', `/sample_image/${input.value}`);
+            }
+            else {
+                $('#preview_input').empty().append('<video id="videobox" src="" controls></video>');
+                $('#videobox').attr('src', `/sample_video/${input.value}`);
+
+                $('video source').last().on('error', function (e) {
+                    $('#videobox')[0].load();
+                });
+            }
+
+            $('#commands').html("Fetching samples" + "<br>");
+        }
+
+        function submit_sample() {
+            let formData = new FormData();
+            let input = $('#samples').val();
+            let file_type;
+            let ext;
+
+            if (input == "none") {
+                alert("No samples is selected !");
+                return;
+            }
+
+            if (input.value.length < 7) {
+                file_type = "image";
+                ext = "jpg";
+            }
+            else {
+                file_type = "video";
+                ext = "mp4";
+            }
+
+            filename = `${new Date().getTime()}.${ext}`;
+            formData.append(`${file_type}`, [filename, input]);
+
+            clear_all_interval(interval_pointer_arr);
+
+            $.ajax({
+                type: "POST",
+                url: `/process_sample`,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log(data);
+                    if (data['finish'] == 1) {
+                        display_data(data);
+                    } else {
+                        let interval_pointer = setInterval(update_data, POLLING_TIME_MS);
+                        interval_pointer_arr.push(interval_pointer);
+                    }
+                }
+            });
+        }
+
     </script>
 </head>
 
 <body>
     <h1>Vehicle density estimation for traffic prediction</h1>
 
-    <p>Select the file to run vehicle density prediction:</p>
+    <p>Upload and preview an image/video to run vehicle density prediction:</p>
 
     <div id="submit_form">
         <form>
             <input id="imageinput" type="file" name="file" onchange="readInput(this)" accept="video/*, image/*">
         </form>
-        <input type="submit" value="Process the file" onclick="submit();" />
+        <input type="submit" value="Upload and process" onclick="submit();" />
+    </div>
+
+    <br />
+
+    <div id="submit_form">
+        <label for="sample">Choose a sample to preview:</label>
+        <select name="samples" id="samples" onchange="preview_samples(this)">
+            <option value="none">None</option>
+            <optgroup label="Videos">
+                <option value="test_video0">Video 1</option>
+                <option value="test_video1">Video 2</option>
+                <option value="test_video2">Video 3</option>
+                <option value="test_video3">Video 4</option>
+                <option value="test_video4">Video 5</option>
+                <option value="test_video5">Video 6</option>
+                <option value="test_video6">Video 7</option>
+                <option value="test_video7">Video 8</option>
+                <option value="test_video8">Video 9</option>
+            </optgroup>
+            <optgroup label="Images">
+                <option value="test0">Image 1</option>
+                <option value="test1">Image 2</option>
+                <option value="test2">Image 3</option>
+                <option value="test3">Image 4</option>
+                <option value="test4">Image 5</option>
+                <option value="test5">Image 6</option>
+                <option value="test6">Image 7</option>
+                <option value="test7">Image 8</option>
+                <option value="test8">Image 9</option>
+                <option value="test9">Image 10</option>
+                <option value="test10">Image 11</option>
+                <option value="test11">Image 12</option>
+                <option value="test12">Image 13</option>
+                <option value="test13">Image 14</option>
+                <option value="test14">Image 15</option>
+                <option value="test15">Image 16</option>
+                <option value="test16">Image 17</option>
+                <option value="test17">Image 18</option>
+                <option value="test18">Image 19</option>
+                <option value="test19">Image 20</option>
+                <option value="test20">Image 21</option>
+                <option value="test21">Image 22</option>
+                <option value="test22">Image 23</option>
+                <option value="test23">Image 24</option>
+                <option value="test24">Image 25</option>
+                <option value="test25">Image 26</option>
+                <option value="test26">Image 27</option>
+                <option value="test27">Image 28</option>
+                <option value="test28">Image 29</option>
+                <option value="test29">Image 30</option>
+                <option value="test30">Image 31</option>
+                <option value="test31">Image 32</option>
+                <option value="test32">Image 33</option>
+                <option value="test33">Image 34</option>
+                <option value="test34">Image 35</option>
+                <option value="test35">Image 36</option>
+                <option value="test36">Image 37</option>
+                <option value="test37">Image 38</option>
+                <option value="test38">Image 39</option>
+                <option value="test39">Image 40</option>
+                <option value="test40">Image 41</option>
+                <option value="test41">Image 42</option>
+                <option value="test42">Image 43</option>
+                <option value="test43">Image 44</option>
+                <option value="test44">Image 45</option>
+                <option value="test45">Image 46</option>
+                <option value="test46">Image 47</option>
+                <option value="test47">Image 48</option>
+                <option value="test48">Image 49</option>
+                <option value="test49">Image 50</option>
+                <option value="test50">Image 51</option>
+                <option value="test51">Image 52</option>
+            </optgroup>
+        </select>
+        <input type="submit" value="Test on sample" onclick="submit_sample();" />
     </div>
 
     <h3>Preview inputs: </h3>
