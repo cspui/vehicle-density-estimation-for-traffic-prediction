@@ -1,5 +1,9 @@
 ## Vehicle density estimation for traffic prediction using YOLOv4
 
+<img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=darkgreen" />
+
+<p>&nbsp;</p>
+
 ## Front page
 ![frontpage](frontpage.jpg) 
 
