@@ -1,6 +1,6 @@
 ## Vehicle density estimation for traffic prediction using YOLOv4
 
-### Front page
+## Front page
 ![frontpage](frontpage.jpg) 
 
 Google Colab link: https://colab.research.google.com/drive/1orMfA9sJtbQDDMwW2ZLjQfIY2Vt2hPBq?usp=sharing
