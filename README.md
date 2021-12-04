@@ -12,7 +12,7 @@
 ## 📙 About
 - Detect vehicle object using a trained YOLOv4 model.
 - Estimates the density of the traffic given a image or video.
-- Application can be hosted and used remotely.
+- Application able to host and deploy within minutes.
 - Great scalability and performance with the help of Google Colab powerful resources.
 
 **Google Colab link**: https://colab.research.google.com/drive/1orMfA9sJtbQDDMwW2ZLjQfIY2Vt2hPBq?usp=sharing
