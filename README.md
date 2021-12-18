@@ -30,4 +30,7 @@
 ![guidance](guidance.jpg) 
 6. 🎉 Congratulations you have succesfully hosted the application.
 
+## Sample test results
+![sample](sample_video_results.mp4) 
+> Original video link: https://www.youtube.com/watch?v=PSf09R3D7Lo&ab_channel=PanasonicSecurity
 
