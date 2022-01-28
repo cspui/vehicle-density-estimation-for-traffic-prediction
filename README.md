@@ -32,7 +32,7 @@
 
 ## Sample test results
 https://user-images.githubusercontent.com/90770616/146642312-00b3f7f0-7026-4e61-a596-08c3f4a9e2e2.mp4
-> This preview video has been heavily compressed, so the quality of the video may suffer.
+> This preview video has been heavily compressed for GitHub 10mb video limit, so the quality of the video may suffer.
 >
 > Download the full sample with this link [here](https://github.com/cspui/vehicle-density-estimation-for-traffic-prediction/blob/master/sample_video_results.mp4)
 > 
